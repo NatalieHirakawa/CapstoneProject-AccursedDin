@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - emitterEffected
+  - Level1Door
+  - Ground
+  - Hazard
+  - Start
+  - Companion
+  - KeySpace
+  - Goal
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Terrain
+  - Entity
+  - Player
+  - WarpEffect
+  - PhysicsObject
+  - Door
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: MainBG
+    uniqueID: 3112520097
+    locked: 0
+  - name: Parallax
+    uniqueID: 2660200547
+    locked: 0
+  - name: Background
+    uniqueID: 2472284147
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 4293088283
+    locked: 0
+  - name: Foreground
+    uniqueID: 463554983
+    locked: 0
+  - name: Distort
+    uniqueID: 3734975813
+    locked: 0
