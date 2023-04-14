@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 /**
  * Author: Chris Wormald
@@ -14,23 +15,32 @@ using UnityEngine.SceneManagement;
 
 public class AudioPeer : MonoBehaviour {
 
-    public static float spectrumValue { get; private set; }
-    public static int audioFidelity = 2048;
-    public static float[] m_audioSpectrum { get; private set; }
+    public float spectrumValue { get; private set; }
+    [HideInInspector] public int audioFidelity = 2048;
+    [HideInInspector] public float freqperband = 22050f / 2048; //Hz
+    public float[] m_audioSpectrum { get; private set; }
+    public float[] m_audioWave { get; private set; }
     public AudioSource source;
     private GameObject primaryListener;
     public static GameObject peerObject { get; private set; }
     [SerializeField] private AudioMixer mixer;
-    const string MIXER_CHANNEL = "MusicEmitter";
+    [SerializeField] private new Light2D light;
+    private string MIXER_CHANNEL;
     public float minListenDistance;
     public float maxListenDistance;
     [SerializeField] private bool isSpatial;
-    public static float multiplier = 100f;
+    public float multiplier = 100f;
+    [SerializeField] private float step = 0.1f;
+    [SerializeField] private uint maxAvergingBand = 50;
+    [SerializeField] private float intensityMod = 20;
+    [SerializeField] private float lightSpeed = 0.5f;
 
 
     void Start() {
+        light = this.GetComponent<Light2D>();
         m_audioSpectrum = new float[audioFidelity];
         peerObject = this.gameObject; //This is very crappy approach
+        MIXER_CHANNEL = GetComponent<AudioSource>().outputAudioMixerGroup.name;
         if (isSpatial)
         {
             var listener = GameObject.FindObjectOfType<AudioListener>();
@@ -53,6 +63,34 @@ public class AudioPeer : MonoBehaviour {
                 mixer.SetFloat(MIXER_CHANNEL, getVolStrength(lisPos));
             }
         }
+        if(light != null)
+            updateLight();
+  
+    }
+
+    void updateLight()
+    {
+        float spectrumAvg = 0;
+        for(int i = 0; i < maxAvergingBand; i++)
+        {
+            spectrumAvg += m_audioSpectrum[i];
+        }
+        spectrumAvg = spectrumAvg * intensityMod / maxAvergingBand;
+        float intensity = Mathf.Lerp(light.intensity, spectrumAvg, lightSpeed * Time.deltaTime);
+        light.intensity = intensity;
+    }
+
+    void generateSineWave()
+    {
+        for (int i = 0; i < audioFidelity/2; i++) { 
+            float sinVal = 0;
+            float sinX = i * step;
+            for (uint j = 0; j < audioFidelity; j++)
+            {
+                sinVal += m_audioSpectrum[j] * Mathf.Sin(j * freqperband * sinX);
+            }
+            m_audioWave[i] = sinVal;
+        }
     }
 
     float getVolStrength(Vector3 pos)
@@ -68,11 +106,8 @@ public class AudioPeer : MonoBehaviour {
         //Debug.Log(collision.gameObject);
         if ((lis = collision.GetComponent<VirtualListener>()) != null)
         {
-            lis.setInRange(true);
-        }
-        if (collision.gameObject.name == "Player")
-        {
-            //this.GetComponent<Companion>().canCall = true;
+            if (lis.source == this || lis.source == null)
+                lis.sources.Add(this);
         }
     }
 
@@ -81,11 +116,8 @@ public class AudioPeer : MonoBehaviour {
         VirtualListener lis;
         if ((lis = collision.GetComponent<VirtualListener>()) != null)
         {
-            lis.setInRange(false);
-        }
-        if (collision.gameObject.name == "Player")
-        {
-            //this.GetComponent<Companion>().canCall = false;
+            if (lis.source == this || lis.source == null)
+                lis.sources.Remove(this);
         }
     }
 }

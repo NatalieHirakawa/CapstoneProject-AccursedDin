@@ -207,15 +207,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e401ad699daed3042a910e73175e3b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpHeight: 6
+  maxJumpHeight: 4
   minJumpHeight: 1
+  earlyJumpEndGravMod: 3
+  fallClamp: -25
   timeToJumpApex: 0.4
-  moveSpeed: 7
-  wallJumpClimb: {x: 20, y: 20}
-  wallJumpOff: {x: 20, y: 20}
-  wallLeap: {x: 20, y: 20}
+  accelerationTimeAirborne: 0.3
+  accelerationTimeGrounded: 0.2
+  moveSpeed: 7.6
+  canMove: 1
+  wallJumpClimb: {x: 10, y: 14}
+  wallJumpOff: {x: 12, y: 14}
+  wallLeap: {x: 8, y: 14}
   wallSlideSpeedMax: 6
   wallStickTime: 0.25
+  jumpBuffer: 0.1
+  coyoteBuffer: 0.1
+  apexBonusAmount: 2.5
+  apexThresh: 10
 --- !u!114 &3427978282341222936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +245,7 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
-  maxSlopeAngle: 80
+  maxSlopeAngle: 65
   playerInput: {x: 0, y: 0}
 --- !u!114 &4383948818826900705
 MonoBehaviour:

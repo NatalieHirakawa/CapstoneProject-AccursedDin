@@ -13,6 +13,12 @@ public class PlayerInput : MonoBehaviour {
 
 	void Update()
 	{
+		if (!player.receivingInput)
+        {
+			player.SetDirectionalInput(Vector2.zero);
+			return;
+		}
+
 		Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		player.SetDirectionalInput(directionalInput);
 

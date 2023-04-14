@@ -33,7 +33,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Pixel
   - 
   - 
   - 
@@ -61,8 +61,14 @@ TagManager:
   - name: Terrain
     uniqueID: 4293088283
     locked: 0
+  - name: Ghostly
+    uniqueID: 1746107201
+    locked: 0
   - name: Foreground
     uniqueID: 463554983
+    locked: 0
+  - name: FakeUI
+    uniqueID: 573104909
     locked: 0
   - name: Distort
     uniqueID: 3734975813

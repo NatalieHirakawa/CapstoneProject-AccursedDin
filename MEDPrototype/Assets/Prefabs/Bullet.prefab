@@ -137,10 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7cd48c76431ca479e84f2400e45426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 3
+  force: 7
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   lifetime: 10
 --- !u!114 &3359530499950128613
 MonoBehaviour:

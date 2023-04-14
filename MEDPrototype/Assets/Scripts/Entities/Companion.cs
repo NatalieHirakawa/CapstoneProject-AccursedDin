@@ -8,20 +8,22 @@ using UnityEngine;
 public class Companion : MonoBehaviour
 {
     [SerializeField] private Player player;
+    //private SpriteRenderer playerRenderer;
 
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     private SpriteRenderer renderer;
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
-    //renderer stuff referenced from:
-    //https://levelup.gitconnected.com/sprite-flipping-in-unity-for-2d-animations-f5c33d3e8f71
-    //https://answers.unity.com/questions/952558/how-to-flip-sprite-horizontally-in-unity-2d.html
+    
     [SerializeField] private float movePercent = 0.75f;
     [SerializeField] private Vector3 offset = new Vector3(-2, 2, 0);
+    [SerializeField] private KeyCode toggleKeyChar;
+    [SerializeField] private float floatFrequency = 1;
 
     public bool canCall;
     private bool companionIsFollowing = false;
     public bool isActive = false;
     private Vector3 leftPos;
+    private int mod;
 
     private void Awake()
     {
@@ -44,9 +46,12 @@ public class Companion : MonoBehaviour
     {
         toggleCompanion();
         if (companionIsFollowing) {
+            float xoffset = transform.position.x - player.transform.position.x;
+            renderer.flipX = xoffset > 0 ? true : false;
+            mod = renderer.flipX ? -1 : 1;
             companionFollow(player.transform.position);
-            leftPos = transform.position;
-        } else
+        } 
+        else
         {
             companionFollow(leftPos);
         }
@@ -65,11 +70,9 @@ public class Companion : MonoBehaviour
 
     //private float sinTime;
     private void companionFollow(Vector3 target) {
-        bool playerFacing = player.GetComponent<SpriteRenderer>().flipX; // true = facing negative x
-        renderer.flipX = playerFacing;
-        int mod = playerFacing ? -1 : 1;
+
         Vector3 targetPos = new Vector3(target.x + offset.x * mod,
-            target.y + offset.y + Mathf.Sin(Time.time),
+            target.y + offset.y + Mathf.Sin(Time.time * floatFrequency),
             target.z + offset.z);
 
         float distance = Vector3.Distance(targetPos, transform.position);
@@ -78,28 +81,26 @@ public class Companion : MonoBehaviour
     }
 
     private void toggleCompanion() {
-        //toggle companion on/off with Q
-        /**if (Input.GetKeyDown(KeyCode.Q)) {//I will refrain for now
-            switch(canCall) {//idk why this switch statement exists
-                case true:
-                    //canCall = false;
-                    isActive = false;
-                    break;
-                case false:
-                    //canCall = true;
-                    isActive = true;
-                    break;
-            }
-        }*/
-
-        //player tells companion to stay put with E
-        if (Input.GetKeyDown(KeyCode.E)){//&& canCall) {
-            companionIsFollowing = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))// && canCall)
+        if (Input.GetKeyDown(toggleKeyChar) && canCall)
         {
-            companionIsFollowing = false;
+            companionIsFollowing = !companionIsFollowing;
+            leftPos = transform.position;
         }
-        //Debug.Log(canCall);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            canCall = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            canCall = false;
+        }
     }
 }

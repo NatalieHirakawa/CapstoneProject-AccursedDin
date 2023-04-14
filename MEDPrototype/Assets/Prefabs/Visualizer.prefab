@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3908630422922050677}
   - component: {fileID: 3908630422922050674}
   - component: {fileID: 3908630422922050675}
-  - component: {fileID: 3908630422922050676}
+  - component: {fileID: 8395939474775039283}
   m_Layer: 0
   m_Name: Visualizer
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3908630422922050676
+--- !u!114 &8395939474775039283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertUnits: 0.2
-  vertHeight: 2
-  bandVis: 10
+  vertHeight: 0.5
+  bandVis: 0
   debug: 0
   valueAtDebug: 0

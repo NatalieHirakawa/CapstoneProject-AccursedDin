@@ -17,6 +17,8 @@ public class VLLerpPC : RaycastController {
 	[SerializeField] private GameObject waypointB;
 	[SerializeField] private float minThreshold = 0;
 	[SerializeField] private float maxThreshold = 5;
+	[SerializeField] private bool averagePositions = true;
+	[SerializeField] private float averagingAmount = 0.5f;
 	private VirtualListener listener;
 
 
@@ -84,7 +86,11 @@ public class VLLerpPC : RaycastController {
 
 		Vector3 newPos = Vector3.Lerp(waypointA.transform.position, waypointB.transform.position, easedPercentBetweenWaypoints);
 
-		return newPos;
+		if (!averagePositions)
+			return newPos;
+		Vector3 avgPos = Vector3.Lerp(transform.position, newPos, averagingAmount * Time.deltaTime);
+
+		return avgPos;
 	}
 
 	void MovePassengers(bool beforeMovePlatform)

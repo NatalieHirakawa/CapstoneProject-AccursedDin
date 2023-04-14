@@ -8,22 +8,24 @@ using UnityEngine;
 
 public class VirtualListener : MonoBehaviour
 {
+    [HideInInspector] public List<AudioPeer> sources;
+    [SerializeField] public AudioPeer source;
     [SerializeField] protected uint frequencyBandA;
     [SerializeField] protected uint frequencyBandB;
-    bool inRange = false;
+    //bool inRange = false;
     private float _audioVal;
 
     protected int freqToSpectrum(float freq)
     {
-        int arrlen = AudioPeer.audioFidelity;
+        int arrlen = source.audioFidelity;
         float index = freq * arrlen / 22050f;
         return (int)index - 1;
     }
 
-    public void setInRange(bool b) // this is dumb and what 3am's will do to you
+    /*public void setInRange(bool b) // this is dumb and what 3am's will do to you
     {
         inRange = b;
-    }
+    }*/
 
     public float getAudioVal()
     {
@@ -34,21 +36,23 @@ public class VirtualListener : MonoBehaviour
 
     void Update()
     {
-        if (inRange)
+        if (sources.Count > 0)
         {
             uint low = System.Math.Min(frequencyBandA, frequencyBandB);
             uint up = System.Math.Max(frequencyBandA, frequencyBandB);
             float sum = 0;
-            for (uint i = low; i <= up; i++)
-                sum += AudioPeer.m_audioSpectrum[i] * AudioPeer.multiplier;
+            foreach (AudioPeer s in sources) {
+                for (uint i = low; i <= up; i++)
+                    sum += s.m_audioSpectrum[i] * s.multiplier;
+            }
             float audioVal = (sum / (up - low + 1));
             _audioVal = audioVal; //seem stupid? thats cuz it is.
             OnUpdate(audioVal); //seperate to allow overriding
         }
     }
 
-    private void Start()
+    /*private void Start()
     {
         inRange = false;
-    }
+    }*/
 }
