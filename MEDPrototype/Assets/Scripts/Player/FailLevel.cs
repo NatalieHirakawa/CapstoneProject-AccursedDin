@@ -55,6 +55,7 @@ public class FailLevel : MonoBehaviour
     {
         if (!dying)
         {
+            p.audio.Play("die");
             dying = true;
             p.receivingInput = false;
             anim.SetTrigger("Death");

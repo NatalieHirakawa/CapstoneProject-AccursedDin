@@ -19,4 +19,15 @@ public class Sound : MonoBehaviour
     public AudioSource source;
 
     public bool loop;
+
+    public Sound(string name, AudioClip clip, float volume, float pitch, float speed, AudioSource source, bool loop)
+    {
+        this.name = name;
+        this.clip = clip;
+        this.volume = volume;
+        this.pitch = pitch;
+        this.speed = speed;
+        this.source = source;
+        this.loop = loop;
+    }
 }

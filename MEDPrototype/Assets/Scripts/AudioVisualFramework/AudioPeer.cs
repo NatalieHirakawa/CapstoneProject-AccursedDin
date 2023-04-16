@@ -35,9 +35,12 @@ public class AudioPeer : MonoBehaviour {
     [SerializeField] private float intensityMod = 20;
     [SerializeField] private float lightSpeed = 0.5f;
 
+    [HideInInspector]
+    public float listenRange { get; private set; }
 
     void Start() {
         light = this.GetComponent<Light2D>();
+        listenRange = this.GetComponent<CircleCollider2D>().radius;
         m_audioSpectrum = new float[audioFidelity];
         peerObject = this.gameObject; //This is very crappy approach
         MIXER_CHANNEL = GetComponent<AudioSource>().outputAudioMixerGroup.name;

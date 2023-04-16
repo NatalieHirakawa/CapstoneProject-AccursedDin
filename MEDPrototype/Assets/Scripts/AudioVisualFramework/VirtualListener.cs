@@ -48,6 +48,9 @@ public class VirtualListener : MonoBehaviour
             float audioVal = (sum / (up - low + 1));
             _audioVal = audioVal; //seem stupid? thats cuz it is.
             OnUpdate(audioVal); //seperate to allow overriding
+        } else
+        {
+            _audioVal = 0;
         }
     }
 

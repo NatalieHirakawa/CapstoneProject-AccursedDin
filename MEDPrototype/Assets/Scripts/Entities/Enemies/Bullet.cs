@@ -30,6 +30,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(new Vector3(0, 0, 0.5f));
         timer += Time.deltaTime;
         if(timer > lifetime)
         {

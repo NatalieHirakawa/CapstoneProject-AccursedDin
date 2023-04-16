@@ -8,7 +8,8 @@ using UnityEngine;
 public class Companion : MonoBehaviour
 {
     [SerializeField] private Player player;
-    //private SpriteRenderer playerRenderer;
+    private AudioManager am;
+    ///private SpriteRenderer playerRenderer;
 
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     private SpriteRenderer renderer;
@@ -28,6 +29,8 @@ public class Companion : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindObjectOfType<Player>();
+        am = FindObjectOfType<AudioManager>();
+        ///playerRenderer = player.GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -47,8 +50,8 @@ public class Companion : MonoBehaviour
         toggleCompanion();
         if (companionIsFollowing) {
             float xoffset = transform.position.x - player.transform.position.x;
-            renderer.flipX = xoffset > 0 ? true : false;
-            mod = renderer.flipX ? -1 : 1;
+            renderer.flipX = xoffset < 0;
+            mod = xoffset > 0 ? -1 : 1;
             companionFollow(player.transform.position);
         } 
         else
@@ -85,6 +88,10 @@ public class Companion : MonoBehaviour
         {
             companionIsFollowing = !companionIsFollowing;
             leftPos = transform.position;
+            if (companionIsFollowing)
+                am.Play("leavePet");
+            else
+                am.Play("callPet");
         }
     }
 

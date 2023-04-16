@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4512960963777439536}
   - component: {fileID: 4512960963777439543}
-  - component: {fileID: 4512960963777439542}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -45,24 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a13621c0f02f54bb976bf8a7d1ea7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 4512960963777439542}
---- !u!114 &4512960963777439542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4512960963777439541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a202b66b008c262488f53fa736542c2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: jump
-  clip: {fileID: 8300000, guid: edb6093efe9dadf42b16cd7b3745fa52, type: 3}
-  volume: 1
-  pitch: 1
-  speed: 0
-  source: {fileID: 0}
-  loop: 0
+  clips:
+  - {fileID: 8300000, guid: de89a1464f80bb741ae486f94696f259, type: 3}
+  - {fileID: 8300000, guid: 991fe2dd0975ba44b8b07f2e35364070, type: 3}
+  - {fileID: 8300000, guid: d88356c521e6609418482cf445cb2a10, type: 3}
+  - {fileID: 8300000, guid: 037c7438266aa1c4ab69204a5f6be867, type: 3}
+  - {fileID: 8300000, guid: e569128998df15c479e03530b4cae616, type: 3}
+  - {fileID: 8300000, guid: acd93629d8e5a73489084439308e8f02, type: 3}
+  - {fileID: 8300000, guid: b66124310641fee42aa0a666494b9da5, type: 3}
+  - {fileID: 8300000, guid: 84ddde171e1ffd44090b7d42feda0f79, type: 3}
+  - {fileID: 8300000, guid: 83f9b69027819ef469fe71cb308bbe91, type: 3}
+  - {fileID: 8300000, guid: 33a9b029296355f419b51670e86b6967, type: 3}
+  - {fileID: 8300000, guid: 3f4732c1e05e00e4c854a6d8495b90a9, type: 3}
+  - {fileID: 8300000, guid: 547b8cb2c8d04544d90fbf43e737bfa7, type: 3}
+  names:
+  - Pause
+  - Unpause
+  - uiButton1
+  - uiButton2
+  - jump
+  - doorEnter
+  - step
+  - land
+  - die
+  - wall
+  - callPet
+  - leavePet
+  sounds: []

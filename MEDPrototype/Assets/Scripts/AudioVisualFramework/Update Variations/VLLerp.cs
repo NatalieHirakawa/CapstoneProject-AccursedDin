@@ -15,6 +15,7 @@ public class VLLerp : MonoBehaviour {
 	[SerializeField] private float minThreshold = 0;
 	[SerializeField] private float maxThreshold = 5;
 	[SerializeField] private bool averagePositions = true;
+	[SerializeField] private bool returnToOriginOnExit = true;
 	[SerializeField] private float averagingAmount = 0.5f;
 	private VirtualListener listener;
 
@@ -52,6 +53,8 @@ public class VLLerp : MonoBehaviour {
 		return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1 - x, a));
 	}
 
+	float audioPercent;
+
 	Vector3 CalculateMovement()
 	{
 
@@ -60,7 +63,10 @@ public class VLLerp : MonoBehaviour {
 			return Vector3.zero;
 		}
 
-		float audioPercent = (listener.getAudioVal() - minThreshold) / (maxThreshold - minThreshold);
+		if (listener.sources.Count != 0 || returnToOriginOnExit)
+		{
+			audioPercent = (listener.getAudioVal() - minThreshold) / (maxThreshold - minThreshold);
+		}
 		audioPercent = Mathf.Clamp01(audioPercent);
 
 		float distanceBetweenWaypoints = Vector3.Distance(waypointA.transform.position, waypointB.transform.position);

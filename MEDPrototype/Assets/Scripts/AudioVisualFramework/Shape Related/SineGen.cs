@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class SineGen : MonoBehaviour {
+public class SineGen : VirtualListener {
 
     Mesh mesh;
     //Collider2D coll;
 
-    [SerializeField] private AudioPeer source;
-    private List<AudioPeer> sources;
-
-    private float[] audioSpectrum;
+    //private float[] audioSpectrum;
     private bool spectrumValid;
     private Vector3[] vertices;
     private int[] triangles;
@@ -44,20 +41,22 @@ public class SineGen : MonoBehaviour {
         mesh = new Mesh();
         //coll = new Collider2D();
         GetComponent<MeshFilter>().mesh = mesh;
-        fidelity = (uint)source.audioFidelity;
+        fidelity = (uint)FindObjectOfType<AudioPeer>().audioFidelity;
         triangleCount = (vertCount - 1) * 2;
-        audioSpectrum = new float[source.audioFidelity];
+        //audioSpectrum = new float[source.audioFidelity];
         vertices = new Vector3[vertCount * 2];
         triangles = new int[triangleCount * 3];
         freqperband = 22050f / fidelity; //Hz
         CreateTriangles();
+        CreateShape();
+        UpdateMesh();
         //Debug.Log(freqperband);
     }
 
     void Update()
     {
-        GetSpectrum();
-        if (spectrumValid)
+        //GetSpectrum();
+        if (sources.Count > 0)
         {
             CreateShape();
             UpdateMesh();
@@ -68,16 +67,6 @@ public class SineGen : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.name);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("2D: " + other.name);
-    }
-
     [Tooltip("The step resolution of the sine wave on the x axis. Lower is higher resolution. Keep in mind that a wave repeats, so too high will make a very repetative noisey surface. Too low will capture less of the wave.")]
     [SerializeField] private float step;
 
@@ -85,15 +74,17 @@ public class SineGen : MonoBehaviour {
     {
         for (int i = 0; i < vertices.Length / 2; i++)
         {
-            
             float sinVal = 0;
             float x = i * vertUnits;
-            float sinX = i * step;
-            for (uint j = 0; j < maxBand; j += sampleEvery)
-            {
-                sinVal += audioSpectrum[j] * Mathf.Sin(j * freqperband * sinX);
+            foreach (AudioPeer s in sources){
+                float sinX = i * step;
+                for (uint j = 0; j < maxBand; j += sampleEvery)
+                {
+                    sinVal += s.m_audioSpectrum[j] * Mathf.Sin(j * freqperband * sinX);
+                }
+                sinVal *= heightMultiplier;
             }
-            sinVal *= heightMultiplier;
+
             vertices[2 * i] = new Vector3(x, 0, 0);
             vertices[2 * i + 1] = new Vector3(x, vertHeight + sinVal, 0);
         }
@@ -125,8 +116,8 @@ public class SineGen : MonoBehaviour {
 
     void GetSpectrum()
     {
-        audioSpectrum = source.m_audioSpectrum;
-        spectrumValid = audioSpectrum != null && audioSpectrum.Length > 0;
+        //audioSpectrum = source.m_audioSpectrum;
+        //spectrumValid = audioSpectrum != null && audioSpectrum.Length > 0;
     }
 
     void UpdateMesh()

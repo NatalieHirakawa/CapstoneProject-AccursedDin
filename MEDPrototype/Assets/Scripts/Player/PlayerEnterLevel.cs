@@ -10,6 +10,19 @@ public class PlayerEnterLevel : MonoBehaviour
 #pragma warning disable
     private string currentScene;
 #pragma warning restore
+    private LevelFade f; //bad programming paradigm continued here due to time lack
+    private AudioManager am;
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += this.OnLoadCallback;
+    }
+
+    void OnLoadCallback(Scene scene, LoadSceneMode sceneMode)
+    {
+        f = FindObjectOfType<LevelFade>();
+        am = FindObjectOfType<AudioManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,14 +55,33 @@ public class PlayerEnterLevel : MonoBehaviour
 
     private void Update()
     {
-        if (enterAllowed && Input.GetKey(KeyCode.Return))
+        if (enterAllowed && Input.GetKey(KeyCode.E))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            am.Play("doorEnter");
+            if (f != null)
+                f.FadeToBlack(asyncLoad);
+            else
+                asyncLoad();
 
             if (sceneToLoad == "LevelSelect")
             {
                 this.transform.position = new Vector3(0,0,0);
             }
         }
+    }
+
+    public void asyncLoad()
+    {
+        StartCoroutine(changeScene());
+    }
+
+    public IEnumerator changeScene()
+    {
+
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneToLoad);
+
+        while (!asyncLoadLevel.isDone)
+            yield return null;
+
     }
 }

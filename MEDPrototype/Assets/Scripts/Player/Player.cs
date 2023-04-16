@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 
 	Controller2D controller;
-	new AudioManager audio;
+	public new AudioManager audio;
 
 	Vector2 directionalInput;
 	bool wallSliding;
@@ -246,6 +246,9 @@ public class Player : MonoBehaviour {
 			{
 				velocity.y = -wallSlideSpeedMax;
 			}
+
+			if (timeTillUnstuckFromWall == wallStickTime)
+				audio.Play("wall");
 
 			if (timeTillUnstuckFromWall > 0)
 			{
