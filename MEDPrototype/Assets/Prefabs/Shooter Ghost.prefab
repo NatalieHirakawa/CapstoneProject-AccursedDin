@@ -29,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593993565716961357}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.46, y: 5.18, z: -0.2052002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,11 +76,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 463554983
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 408413769, guid: b8b164d610f43044193ea695c9b30dda, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.44705883}
-  m_FlipX: 0
+  m_Sprite: {fileID: 1077506694, guid: 767452ed2531ba3479a261aac6fbdba9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8784314}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -217,10 +217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e11b69a26bdd1459d26bb77505477e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequencyBandA: 0
-  frequencyBandB: 10
-  threshold: 2
-  timeStep: 0
+  sources: []
+  source: {fileID: 0}
+  frequencyBandA: 8
+  frequencyBandB: 14
+  threshold: 1
+  timeStep: 0.4
   timeToWait: 0
   restSmoothTime: 0
   PassedThreshold: 0

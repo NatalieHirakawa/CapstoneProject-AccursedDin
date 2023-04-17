@@ -15,6 +15,7 @@ public class PlayerEnterLevel : MonoBehaviour
 
     private void Start()
     {
+        am = FindObjectOfType<AudioManager>();
         SceneManager.sceneLoaded += this.OnLoadCallback;
     }
 
@@ -30,9 +31,15 @@ public class PlayerEnterLevel : MonoBehaviour
         // {
             if (collision.GetComponent<Level1Door>()) // Load level 1
             {
-                sceneToLoad = "Level1";
+                sceneToLoad = "Level2";
                 currentScene = "LevelSelect";
                 enterAllowed = true;
+            }
+            else if (collision.GetComponent<Level2Door>()) // Load level 1
+            {
+            sceneToLoad = "Level1";
+            currentScene = "LevelSelect";
+            enterAllowed = true;
             }
             else if (collision.GetComponent<Goal>())
             {
@@ -62,11 +69,6 @@ public class PlayerEnterLevel : MonoBehaviour
                 f.FadeToBlack(asyncLoad);
             else
                 asyncLoad();
-
-            if (sceneToLoad == "LevelSelect")
-            {
-                this.transform.position = new Vector3(0,0,0);
-            }
         }
     }
 
@@ -82,6 +84,11 @@ public class PlayerEnterLevel : MonoBehaviour
 
         while (!asyncLoadLevel.isDone)
             yield return null;
+
+        if (sceneToLoad == "LevelSelect")
+        {
+            this.transform.position = new Vector3(-10, -1, 0);
+        }
 
     }
 }

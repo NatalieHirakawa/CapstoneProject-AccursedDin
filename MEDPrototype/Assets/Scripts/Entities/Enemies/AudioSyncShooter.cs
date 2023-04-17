@@ -11,6 +11,7 @@ public class AudioSyncShooter : VLThreshold
     public Transform bulletPos;
 
     private GameObject player;
+    public static float GhostShootRange = 20f;
 
     private void Awake()
     {
@@ -20,8 +21,10 @@ public class AudioSyncShooter : VLThreshold
     public override void OnThreshold()
     {
         base.OnThreshold();
-        Instantiate(bullet, bulletPos.position, Quaternion.identity);
+        if(Vector3.Distance(player.transform.position, this.transform.position) < GhostShootRange)
+            Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
+
     protected override void OnUpdate(float audioVal)
     {
         base.OnUpdate(audioVal);

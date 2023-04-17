@@ -6,7 +6,7 @@ using PlayerController2D;
 //Credit: Sebastian Lague
 //Edits by Chris W.
 
-[RequireComponent(typeof(VirtualListener))]
+//[RequireComponent(typeof(VirtualListener))]
 public class VLLerpPC : RaycastController {
 
 	public LayerMask passengerMask;
@@ -20,7 +20,7 @@ public class VLLerpPC : RaycastController {
 	[SerializeField] private bool averagePositions = true;
 	[SerializeField] private bool returnToOriginOnExit = true;
 	[SerializeField] private float averagingAmount = 0.5f;
-	private VirtualListener listener;
+	[SerializeField] private VirtualListener listener;
 
 
 
@@ -40,7 +40,8 @@ public class VLLerpPC : RaycastController {
 	public override void Start()
 	{
 		base.Start();
-		listener = GetComponent<VirtualListener>();
+		if(listener == null)
+			listener = GetComponent<VirtualListener>();
 		/*
 		globalWaypoints = new Vector3[localWaypoints.Length];
 		for (int i = 0; i < localWaypoints.Length; i++)

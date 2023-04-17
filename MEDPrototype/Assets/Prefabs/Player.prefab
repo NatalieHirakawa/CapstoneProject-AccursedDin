@@ -117,12 +117,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1599830848, guid: 7affb1175d520b644b1c9c8d7ef4d987, type: 3}
+  m_Sprite: {fileID: -13048968, guid: deb7b513b87f9f047b9e39a167f822d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.375, y: 2.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -141,18 +141,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.013966739}
+  m_Offset: {x: 0.030947417, y: -0.025572777}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.75}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.375, y: 2.0625}
+    newSize: {x: 1.375, y: 2.0625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.87, y: 1.76}
+  m_Size: {x: 0.93189484, y: 1.8915339}
   m_EdgeRadius: 0
 --- !u!81 &3427978282341222932
 AudioListener:
@@ -215,12 +215,14 @@ MonoBehaviour:
   accelerationTimeAirborne: 0.3
   accelerationTimeGrounded: 0.2
   moveSpeed: 7.6
-  canMove: 1
+  receivingInput: 1
+  frozen: 0
   wallJumpClimb: {x: 10, y: 14}
   wallJumpOff: {x: 12, y: 14}
   wallLeap: {x: 8, y: 14}
   wallSlideSpeedMax: 6
   wallStickTime: 0.25
+  audio: {fileID: 0}
   jumpBuffer: 0.1
   coyoteBuffer: 0.1
   apexBonusAmount: 2.5

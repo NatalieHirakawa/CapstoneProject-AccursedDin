@@ -52,6 +52,7 @@ public class Player : MonoBehaviour {
 	int wallDirX;
 
 	private SpriteRenderer mySpriteRenderer;
+	private Animator anim;
 
 	public static Player instance;
 
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour {
 		}
 		DontDestroyOnLoad(gameObject);
 		mySpriteRenderer = GetComponent<SpriteRenderer>();
+		anim = GetComponent<Animator>();
 	}
 
 	void Start()
@@ -108,19 +110,15 @@ public class Player : MonoBehaviour {
 
 			bool prevGrounded = controller.collisions.below;
 			controller.Move(velocity * Time.deltaTime, directionalInput);
+
 			if (!controller.collisions.below && prevGrounded) lastGroundTime = Time.time;
+
 			else if (controller.collisions.below && !prevGrounded)
-            {
+			{
 				coyoteUsable = true;
 				//landing = true;
-            }
+			}
 		}
-
-		if (velocity.x < 0) // flip sprite
-			mySpriteRenderer.flipX = true;
-			//transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-		else if (velocity.x > 0)
-			mySpriteRenderer.flipX = false;
 
 		if (controller.collisions.above || controller.collisions.below)
 		{
@@ -133,6 +131,8 @@ public class Player : MonoBehaviour {
 				velocity.y = 0;
 			}
 		}
+
+		HandleAnimation();
 	}
 
 	public void SetDirectionalInput(Vector2 input)
@@ -247,9 +247,6 @@ public class Player : MonoBehaviour {
 				velocity.y = -wallSlideSpeedMax;
 			}
 
-			if (timeTillUnstuckFromWall == wallStickTime)
-				audio.Play("wall");
-
 			if (timeTillUnstuckFromWall > 0)
 			{
 				velocityXSmoothing = 0;
@@ -274,5 +271,34 @@ public class Player : MonoBehaviour {
 		var fallSpeed = endedJumpEarly && velocity.y > 0 ? gravity * earlyJumpEndGravMod : gravity;
 		velocity.y += fallSpeed * Time.deltaTime;
 		if (velocity.y < fallClamp) velocity.y = fallClamp;
+		HandleAnimation();
 	}
+
+	//float lastGrounded = 0;
+
+	void HandleAnimation()
+    {
+		anim.SetFloat("playerXSpeed", Mathf.Abs(velocity.x));
+		anim.SetFloat("playerYSpeed", velocity.y);
+		anim.SetBool("playerOnWall", wallSliding);
+		anim.SetFloat("playerInJumpApex", apexPoint);
+		anim.SetBool("isGrounded", controller.collisions.below);
+
+		anim.SetFloat("timeSinceGround", Time.time - lastGroundTime);
+
+		if (wallSliding)
+		{
+			mySpriteRenderer.flipX = controller.collisions.right;
+		}
+		else
+		{
+			mySpriteRenderer.flipX = velocity.x < 0;
+		}
+
+	}
+
+	void stepNoise()
+    {
+		audio.Play("step");
+    }
 }

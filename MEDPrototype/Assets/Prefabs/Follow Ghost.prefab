@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7811387189693560106}
   - component: {fileID: 7811387189693560107}
   - component: {fileID: 7811387189693560104}
-  - component: {fileID: 7811387189693560105}
   - component: {fileID: 8329089584322490029}
   m_Layer: 7
   m_Name: Follow Ghost
@@ -30,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7811387189693560111}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.98, y: 6.03, z: -0.2052002}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,11 +76,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 463554983
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 408413769, guid: b8b164d610f43044193ea695c9b30dda, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.44705883}
-  m_FlipX: 0
+  m_Sprite: {fileID: -224306656, guid: 767452ed2531ba3479a261aac6fbdba9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.77254903}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -102,10 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d590fbb935210d74da8d30eb32b06b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequencyBandA: 0
-  frequencyBandB: 10
-  threshold: 3
-  moveSpeed: 3
+  sources: []
+  source: {fileID: 0}
+  frequencyBandA: 8
+  frequencyBandB: 12
+  threshold: 2
+  moveSpeed: 3.5
 --- !u!50 &7811387189693560106
 Rigidbody2D:
   serializedVersion: 4
@@ -142,7 +143,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.34
+  m_Radius: 0.93
 --- !u!114 &7811387189693560104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,26 +223,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &7811387189693560105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7811387189693560111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 131063f1b28a3fe43b9fb9881aa5a05b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frequencyBandA: 0
-  frequencyBandB: 10
-  threshold: 4
-  timeStep: 0
-  timeToWait: 0
-  restSmoothTime: 2
-  PassedThreshold: 0
-  beatIntensity: 10
 --- !u!114 &8329089584322490029
 MonoBehaviour:
   m_ObjectHideFlags: 0

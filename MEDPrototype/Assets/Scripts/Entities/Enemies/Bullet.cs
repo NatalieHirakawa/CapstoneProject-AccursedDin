@@ -24,13 +24,14 @@ public class Bullet : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         Vector3 direction = player.transform.position - transform.position;
+        transform.Rotate(new Vector3(0, 0, Random.value*2));
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, 0, 0.5f));
+        transform.Rotate(new Vector3(0, 0, 50f*Time.deltaTime));
         timer += Time.deltaTime;
         if(timer > lifetime)
         {

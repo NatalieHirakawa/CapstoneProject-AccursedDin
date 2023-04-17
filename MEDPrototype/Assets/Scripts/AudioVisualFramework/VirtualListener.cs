@@ -8,6 +8,16 @@ using UnityEngine;
 
 public class VirtualListener : MonoBehaviour
 {
+
+    public static float dampPercent = 0.5f;
+    public static float dampTimeFactor = 1.1f;
+
+    private SpriteRenderer sRen;
+    private MeshRenderer mRen;
+    private Color normalColor;
+    private Color dampendColor;
+
+
     [HideInInspector] public List<AudioPeer> sources;
     [SerializeField] public AudioPeer source;
     [SerializeField] protected uint frequencyBandA;
@@ -38,6 +48,7 @@ public class VirtualListener : MonoBehaviour
     {
         if (sources.Count > 0)
         {
+            updateColor(normalColor);
             uint low = System.Math.Min(frequencyBandA, frequencyBandB);
             uint up = System.Math.Max(frequencyBandA, frequencyBandB);
             float sum = 0;
@@ -51,11 +62,37 @@ public class VirtualListener : MonoBehaviour
         } else
         {
             _audioVal = 0;
+            updateColor(dampendColor);
         }
     }
 
-    /*private void Start()
+    private void updateColor(Color c)
     {
-        inRange = false;
-    }*/
+        if(sRen != null)
+        {
+            sRen.color = Color.Lerp(sRen.color, c, dampTimeFactor*Time.deltaTime);
+        } else if (mRen != null)
+        {
+            mRen.material.color = Color.Lerp(mRen.material.color, c, dampTimeFactor * Time.deltaTime);
+        }
+    }
+
+    private void Start()
+    {
+        
+        sRen = GetComponent<SpriteRenderer>();
+        if (sRen == null)
+        {
+            mRen = GetComponent<MeshRenderer>();
+            if (mRen != null)
+            {
+                normalColor = mRen.material.color;
+            }
+            else
+                return;
+        }
+        else
+            normalColor = sRen.color;
+        dampendColor = new Color(normalColor.r*dampPercent, normalColor.g* dampPercent, normalColor.b* dampPercent, normalColor.a);
+    }
 }

@@ -58,7 +58,8 @@ public class FailLevel : MonoBehaviour
             p.audio.Play("die");
             dying = true;
             p.receivingInput = false;
-            anim.SetTrigger("Death");
+            //anim.SetTrigger("playerDeath");
+            anim.SetBool("isDead", dying);
         }
         //dead = true;
     }
@@ -91,8 +92,9 @@ public class FailLevel : MonoBehaviour
         //    lf.forceFadeIn();
         GameObject startDoor = GameObject.FindGameObjectWithTag("Start");
         this.transform.position = new Vector3(startDoor.transform.position.x, startDoor.transform.position.y, 0);
-        anim.Play("Idle", -1, 0f);
+        anim.Play("playerIdle", -1, 0f);
         p.receivingInput = true;
         dying = false;
+        anim.SetBool("isDead", dying);
     }
 }

@@ -5,6 +5,7 @@ using System.Collections;
 public class Controller2D : RaycastController {
 
 	public float maxSlopeAngle = 80;
+	public int directionalPlatformLayer;
 
 	public CollisionInfo collisions;
 	[HideInInspector]
@@ -126,7 +127,10 @@ public class Controller2D : RaycastController {
 
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + moveAmount.x);
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+			LayerMask mask = collisionMask;
+			if (directionY < 0)
+				mask |= (1 << directionalPlatformLayer);
+			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, mask);
 
 			Debug.DrawRay(rayOrigin, Vector2.up * directionY, Color.red);
 

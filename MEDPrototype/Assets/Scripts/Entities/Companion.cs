@@ -26,13 +26,6 @@ public class Companion : MonoBehaviour
     private Vector3 leftPos;
     private int mod;
 
-    private void Awake()
-    {
-        player = GameObject.FindObjectOfType<Player>();
-        am = FindObjectOfType<AudioManager>();
-        ///playerRenderer = player.GetComponent<SpriteRenderer>();
-    }
-
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
@@ -42,6 +35,8 @@ public class Companion : MonoBehaviour
         leftPos = transform.position;
         canCall = false;
         companionIsFollowing = false;
+        player = FindObjectOfType<Player>();
+        am = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
