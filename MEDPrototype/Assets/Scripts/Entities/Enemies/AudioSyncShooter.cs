@@ -9,6 +9,7 @@ public class AudioSyncShooter : VLThreshold
 
     public GameObject bullet;
     public Transform bulletPos;
+    private Renderer r;
 
     private GameObject player;
     public static float GhostShootRange = 20f;
@@ -16,12 +17,13 @@ public class AudioSyncShooter : VLThreshold
     private void Awake()
     {
         player = GameObject.Find("Player");
+        r = GetComponent<Renderer>();
     }
 
     public override void OnThreshold()
     {
         base.OnThreshold();
-        if(Vector3.Distance(player.transform.position, this.transform.position) < GhostShootRange)
+        if (r.isVisible)
             Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
 

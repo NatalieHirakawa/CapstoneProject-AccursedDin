@@ -16,7 +16,7 @@ public class Parallax : MonoBehaviour
         SpriteRenderer r = GetComponent<SpriteRenderer>();
         if(r == null)
         {
-            Tilemap t = GetComponent<Tilemap>();
+            Tilemap t = this.GetComponentInChildren<Tilemap>();
             bounds = t.localBounds.center;
         }
         else
