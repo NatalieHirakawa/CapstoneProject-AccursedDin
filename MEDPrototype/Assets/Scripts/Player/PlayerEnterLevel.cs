@@ -57,6 +57,9 @@ public class PlayerEnterLevel : MonoBehaviour
         } else if (collision.GetComponent<Goal>())
         {
             enterAllowed = false;
+        } else if (collision.GetComponent<Level2Door>())
+        {
+            enterAllowed = false;
         }
     }
 
@@ -88,7 +91,7 @@ public class PlayerEnterLevel : MonoBehaviour
 
         if (sceneToLoad == "LevelSelect")
         {
-            this.transform.position = new Vector3(-10, 0, -10);
+            this.transform.position = new Vector3(-10, -1, 0);
         }
         else
         {

@@ -75,7 +75,7 @@ public class PauseFunction : MonoBehaviour
 
     public void asyncLoadLevelSelect()
     {
-        StartCoroutine(changeScene("LevelSelect", new Vector3(-10, 0, -10)));
+        StartCoroutine(changeScene("LevelSelect", new Vector3(-10, 0, 0)));
     }
 
     public void asyncLoadTitle()
