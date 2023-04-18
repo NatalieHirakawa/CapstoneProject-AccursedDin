@@ -31,15 +31,15 @@ public class PlayerEnterLevel : MonoBehaviour
         // {
             if (collision.GetComponent<Level1Door>()) // Load level 1
             {
-                sceneToLoad = "Level2";
+                sceneToLoad = "Level1";
                 currentScene = "LevelSelect";
                 enterAllowed = true;
             }
-            else if (collision.GetComponent<Level2Door>()) // Load level 1
+            else if (collision.GetComponent<Level2Door>()) // Load level 2
             {
-            sceneToLoad = "Level1";
-            currentScene = "LevelSelect";
-            enterAllowed = true;
+                sceneToLoad = "Level2";
+                currentScene = "LevelSelect";
+                enterAllowed = true;
             }
             else if (collision.GetComponent<Goal>())
             {
@@ -64,6 +64,7 @@ public class PlayerEnterLevel : MonoBehaviour
     {
         if (enterAllowed && Input.GetKey(KeyCode.E))
         {
+            enterAllowed = false;
             am.Play("doorEnter");
             if (f != null)
                 f.FadeToBlack(asyncLoad);
@@ -87,7 +88,13 @@ public class PlayerEnterLevel : MonoBehaviour
 
         if (sceneToLoad == "LevelSelect")
         {
-            this.transform.position = new Vector3(-10, -1, 0);
+            this.transform.position = new Vector3(-10, 0, -10);
+        }
+        else
+        {
+            GameObject startDoor = GameObject.FindGameObjectWithTag("Start");
+            if(startDoor != null)
+                this.transform.position = new Vector3(startDoor.transform.position.x, startDoor.transform.position.y, 0);
         }
 
     }

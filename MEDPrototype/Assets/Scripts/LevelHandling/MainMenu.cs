@@ -44,5 +44,8 @@ public class MainMenu : MonoBehaviour
         while (!asyncLoadLevel.isDone)
             yield return null;
 
+        p.transform.position = new Vector3(0,4,0);
+        p.receivingInput = true;
+
     }
 }

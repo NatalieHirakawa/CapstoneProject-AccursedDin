@@ -33,11 +33,14 @@ public class Parallax : MonoBehaviour
     }*/
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector2 dist = new Vector2(cam.transform.position.x * parallaxEffect.x,
             cam.transform.position.y * parallaxEffect.y);
 
-        transform.position = new Vector3(startPos.x + dist.x - bounds.x/2, startPos.y + dist.y - bounds.y/2, transform.position.z);
+        if(tag != null)
+            transform.position = new Vector3(startPos.x + dist.x - bounds.x/2, startPos.y + dist.y - bounds.y/2, transform.position.z);
+        else
+            transform.position = new Vector3(startPos.x + dist.x, startPos.y + dist.y, transform.position.z);
     }
 }

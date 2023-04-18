@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3593993565716961354}
   - component: {fileID: 3593993565716961355}
   - component: {fileID: 4498165609591592332}
+  - component: {fileID: 5265015177715287818}
   m_Layer: 7
   m_Name: Shooter Ghost
   m_TagString: emitterEffected
@@ -240,3 +241,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62f12e6f1ce11a4889a009a8a8ab68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5265015177715287818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3593993565716961357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5238a6fa0037981458c59c05b3012335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 1
+  freq: 1
+  randomize: 1

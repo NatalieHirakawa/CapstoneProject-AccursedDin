@@ -361,11 +361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3427978282341222927, guid: a5a71e75cdda926418141297d23de384, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.31
+      value: -10.14
       objectReference: {fileID: 0}
     - target: {fileID: 3427978282341222927, guid: a5a71e75cdda926418141297d23de384, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.53
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3427978282341222927, guid: a5a71e75cdda926418141297d23de384, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85454,11 +85454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424222538813422418, guid: 7b055a1c284a10140b00d90ec44c176a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.02
+      value: -10.14
       objectReference: {fileID: 0}
     - target: {fileID: 4424222538813422418, guid: 7b055a1c284a10140b00d90ec44c176a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.31
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 4424222538813422418, guid: 7b055a1c284a10140b00d90ec44c176a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85517,7 +85517,7 @@ GameObject:
   - component: {fileID: 833959043}
   - component: {fileID: 833959046}
   - component: {fileID: 833959045}
-  - component: {fileID: 833959044}
+  - component: {fileID: 833959047}
   m_Layer: 11
   m_Name: Level1Door
   m_TagString: Level1Door
@@ -85540,18 +85540,6 @@ Transform:
   m_Father: {fileID: 1730381698}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &833959044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833959042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e89f144e8adb7d41853fd6c5519d468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &833959045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85630,6 +85618,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &833959047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833959042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4755cd3b8b5804098847d607b33cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &947294354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3427978282341222936, guid: a5a71e75cdda926418141297d23de384, type: 3}
@@ -86756,7 +86756,7 @@ GameObject:
   - component: {fileID: 2080323892}
   - component: {fileID: 2080323895}
   - component: {fileID: 2080323894}
-  - component: {fileID: 2080323893}
+  - component: {fileID: 2080323896}
   m_Layer: 11
   m_Name: Level2Door
   m_TagString: Untagged
@@ -86779,18 +86779,6 @@ Transform:
   m_Father: {fileID: 1730381698}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2080323893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080323891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4755cd3b8b5804098847d607b33cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2080323894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86869,6 +86857,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2080323896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080323891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e89f144e8adb7d41853fd6c5519d468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100611797
 GameObject:
   m_ObjectHideFlags: 0

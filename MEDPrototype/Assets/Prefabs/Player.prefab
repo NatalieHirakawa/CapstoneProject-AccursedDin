@@ -248,6 +248,7 @@ MonoBehaviour:
   verticalRaySpacing: 0
   collider: {fileID: 0}
   maxSlopeAngle: 65
+  directionalPlatformLayer: 12
   playerInput: {x: 0, y: 0}
 --- !u!114 &4383948818826900705
 MonoBehaviour:

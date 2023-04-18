@@ -43,8 +43,8 @@ public class PauseFunction : MonoBehaviour
     {
         am.Play("uiButton1");
         PauseMenu.SetActive(false);
-        Time.timeScale = 0f;
-        SceneManager.LoadScene("TitleCard");
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene("TitleCard");
         f.FadeToBlack(asyncLoadTitle);
         isPaused = false;
     }
@@ -75,23 +75,25 @@ public class PauseFunction : MonoBehaviour
 
     public void asyncLoadLevelSelect()
     {
-        StartCoroutine(changeScene("LevelSelect", new Vector3(0, -4, 0)));
+        StartCoroutine(changeScene("LevelSelect", new Vector3(-10, 0, -10)));
     }
 
     public void asyncLoadTitle()
     {
-        p.GetComponent<AudioListener>().enabled = false;
+        //p.GetComponent<AudioListener>().enabled = false;
         StartCoroutine(changeScene("TitleCard", new Vector3(-10, 10, 0)));
     }
 
     public IEnumerator changeScene(string scene, Vector3 pos)
     {
 
+        p.transform.position = pos;
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(scene);
 
         while (!asyncLoadLevel.isDone)
             yield return null;
 
+        p.HaltVelocity();
         p.transform.position = pos;
         p.receivingInput = true;
     }
