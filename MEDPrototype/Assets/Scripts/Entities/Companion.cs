@@ -21,21 +21,20 @@ public class Companion : MonoBehaviour
     [SerializeField] private float floatFrequency = 1;
 
     public bool canCall;
-    private bool companionIsFollowing = false;
+    public bool companionIsFollowing = false;
     public bool isActive = false;
     private Vector3 leftPos;
     private int mod;
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
         renderer = GetComponent<SpriteRenderer>();
         if (renderer == null) {
             Debug.Log("Missing SpriteRenderer for companion");
         }
         leftPos = transform.position;
         canCall = false;
-        companionIsFollowing = false;
-        player = FindObjectOfType<Player>();
         am = FindObjectOfType<AudioManager>();
     }
 

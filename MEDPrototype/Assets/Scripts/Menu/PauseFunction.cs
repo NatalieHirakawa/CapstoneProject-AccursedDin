@@ -51,6 +51,7 @@ public class PauseFunction : MonoBehaviour
 
     public void goToLevelSelectLevel1() {
         am.Play("uiButton1");
+        p.GetComponent<FailLevel>().checkpointHit = false;
         PauseMenu.SetActive(false);
         Time.timeScale = 1f;
         f.FadeToBlack(asyncLoadLevelSelect);
