@@ -6,11 +6,11 @@ This is the game Accursed Din, a 2D Unity Music based puzzle platformer made by 
 To open this project, please have the 2021.3.19f1 version of Unity editor. 
 1. Fork and clone this project in local repository open within the 2021.3.19f1 version of Unity Editor. 
 2. Go to File -> Build Settings then add the following scenes to Scenes in Build
-        a. TitleCard
-        b. LevelSelect
-        c. Level1
-        d. KeyLevel
-        e. Level2
+        -  TitleCard
+        -  LevelSelect
+        -  Level1
+        -  KeyLevel
+        -  Level2
 3. Build and Run to play the game
 
 We currently do not have any missing elements.
