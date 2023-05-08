@@ -41,6 +41,12 @@ public class PlayerEnterLevel : MonoBehaviour
                 currentScene = "LevelSelect";
                 enterAllowed = true;
             }
+            else if (collision.gameObject.CompareTag("TutorialDoor")) // Load tut
+            {
+                sceneToLoad = "Tutorial";
+                currentScene = "LevelSelect";
+                enterAllowed = true;
+            }
             else if (collision.GetComponent<Goal>())
             {
                 sceneToLoad = "LevelSelect";
@@ -55,6 +61,10 @@ public class PlayerEnterLevel : MonoBehaviour
         {
             enterAllowed = false;
         } else if (collision.GetComponent<Goal>())
+        {
+            enterAllowed = false;
+        }
+        else if (collision.gameObject.CompareTag("TutorialDoor"))
         {
             enterAllowed = false;
         } else if (collision.GetComponent<Level2Door>())
@@ -95,6 +105,7 @@ public class PlayerEnterLevel : MonoBehaviour
         }
         else
         {
+            this.GetComponent<FailLevel>().hasCheckpoint = false;
             GameObject startDoor = GameObject.FindGameObjectWithTag("Start");
             if(startDoor != null)
                 this.transform.position = new Vector3(startDoor.transform.position.x, startDoor.transform.position.y, 0);

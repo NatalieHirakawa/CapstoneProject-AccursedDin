@@ -18,8 +18,9 @@ public class FloatyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        transform.position = new Vector3(origin.x, origin.y + 0.5f * Mathf.Sin(freq * Time.time + offset), origin.z);
+        Vector3 relativeMod = new Vector3(0, 0.5f * Mathf.Sin(freq * Time.time + offset), 0) * Time.deltaTime;
+        transform.position = transform.position + relativeMod;
     }
 }

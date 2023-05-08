@@ -13,6 +13,7 @@ TagManager:
   - KeySpace
   - Goal
   - Checkpoint
+  - TutorialDoor
   layers:
   - Default
   - TransparentFX
