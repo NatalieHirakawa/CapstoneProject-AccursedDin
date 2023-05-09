@@ -28,6 +28,7 @@ Additional Resources Utilized (All assets used were made freely available):
 -  RPG Sound Effects https://leohpaz.itch.io/rpg-essentials-sfx-free
 -  Castle Tilemap Art https://szadiart.itch.io/pixle-castle-2d
 -  Background Sound FX https://mixkit.co/free-sound-effects/ambience/?page=2
+-  Opening Rain Sound FX https://mixkit.co/free-sound-effects/rain/
 
 -  You can get unity from https://unity.com/
 
