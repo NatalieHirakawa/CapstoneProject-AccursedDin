@@ -11,7 +11,7 @@ To open this project, please have the 2021.3.19f1 version of Unity editor.
         -  Level1
         -  Tutorial
         -  Level2
-3. Build and Run to play the game
+3. Build for your system and Run to play the game
 
 Every element you need to build the game should be included.
 
